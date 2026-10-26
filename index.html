@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Елизавета — подготовка к ОГЭ по математике и информатике</title>
+  <meta name="description" content="Подготовка к ОГЭ по математике и информатике онлайн. Понятные объяснения, конспект после каждого урока. Первое занятие — бесплатно.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Manrope:wght@400;500;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --wine: #46151b;
+      --wine-2: #6a2530;
+      --cream: #f1ebdd;
+      --cream-2: #e8dece;
+      --paper: #faf6ee;
+      --gold: #e9a23b;
+      --line: rgba(70, 21, 27, .07);
+      --radius: 32px;
+      --shadow: 0 20px 50px rgba(70, 21, 27, .14);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      font-family: 'Manrope', sans-serif;
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--wine);
+      background: var(--cream);
+      overflow-x: clip;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+    section { position: relative; padding: 120px 0; }
+
+    /* «Тетрадь в клетку» */
+    .grid-paper {
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 32px 32px;
+      background-position: center top;
+    }
+    .dark { background-color: var(--wine); color: var(--cream); }
+
+    h1, h2, h3 { font-family: 'Unbounded', sans-serif; font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(34px, 4.6vw, 60px); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .eyebrow::before { content: ''; width: 28px; height: 2px; background: currentColor; }
+    .section-head { max-width: 760px; margin-bottom: 64px; }
+    .section-head p { margin-top: 20px; font-size: 20px; opacity: .8; }
+    .hand { font-family: 'Caveat', cursive; font-weight: 700; }
+
+    /* Кнопки */
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 17px;
+      padding: 20px 34px; border-radius: 999px;
+      background: var(--wine); color: var(--cream);
+      transition: transform .2s, box-shadow .2s, background .2s;
+      white-space: nowrap;
+    }
+    .btn svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(70, 21, 27, .3); }
+    .btn.light { background: var(--cream); color: var(--wine); }
+    .btn.light:hover { box-shadow: 0 14px 30px rgba(0, 0, 0, .3); }
+    .btn.ghost { background: transparent; color: var(--wine); box-shadow: inset 0 0 0 1.5px var(--wine); }
+    .btn.ghost:hover { background: var(--wine); color: var(--cream); }
+
+    /* Навигация */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(241, 235, 221, .82);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    .nav.scrolled { border-color: rgba(70, 21, 27, .1); }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; height: 78px; gap: 24px; }
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 17px; line-height: 1.15; }
+    .logo-mark {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--wine); color: var(--cream);
+      display: grid; place-items: center;
+      font-family: 'Unbounded', sans-serif; font-size: 18px;
+    }
+    .logo small { display: block; font-weight: 500; font-size: 13px; opacity: .7; }
+    .nav-links { display: flex; gap: 32px; font-weight: 600; font-size: 16px; }
+    .nav-links a { position: relative; }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -4px; width: 100%; height: 2px;
+      background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav .btn { padding: 13px 22px; font-size: 14px; }
+
+    /* Первый экран */
+    .hero { padding: 40px 0 0; overflow: hidden; }
+    .hero .container { display: grid; grid-template-columns: 1.05fr 1fr; gap: 32px; align-items: end; min-height: min(calc(100vh - 78px), 860px); }
+    .hero-text { padding-bottom: 110px; align-self: center; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--paper); border-radius: 999px; padding: 9px 18px 9px 14px;
+      font-weight: 700; font-size: 15px; box-shadow: 0 4px 14px rgba(70, 21, 27, .08);
+    }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #3fb26b; box-shadow: 0 0 0 0 rgba(63, 178, 107, .6); animation: pulse 2s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(63, 178, 107, 0); } 100% { box-shadow: 0 0 0 0 rgba(63, 178, 107, 0); } }
+    .hero h1 { font-size: clamp(40px, 5.6vw, 78px); margin: 28px 0 28px; }
+    .hero h1 .mark { position: relative; white-space: nowrap; }
+    .hero h1 .mark svg { position: absolute; left: -2%; bottom: -14px; width: 104%; height: 22px; overflow: visible; }
+    .hero h1 .mark path { stroke: var(--gold); stroke-width: 6; fill: none; stroke-linecap: round; stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.2s .6s ease-out forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .hero-lead { font-size: 21px; max-width: 540px; opacity: .85; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 40px 0 48px; }
+    .hero-actions .btn { padding: 19px 28px; font-size: 16px; }
+    .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+    .hero-stats div { font-size: 15px; line-height: 1.3; max-width: 150px; opacity: .85; }
+    .hero-stats b { display: block; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 34px; margin-bottom: 4px; opacity: 1; white-space: nowrap; }
+
+    .hero-visual { position: relative; height: 100%; min-height: 640px; }
+    /* Фото на бордовой арке, голова чуть выходит за её край; сзади — контурная арка */
+    .portrait { position: absolute; right: -4%; bottom: 0; width: 100%; max-width: 640px; }
+    .portrait img { position: relative; z-index: 1; width: 100%; }
+    .portrait .arch, .portrait .arch-shadow {
+      position: absolute; left: 30%; right: -2%; top: 12%; bottom: 0;
+      border-radius: 999px 999px 0 0;
+    }
+    .portrait .arch { background: radial-gradient(120% 90% at 50% 10%, var(--wine-2), var(--wine)); }
+    .portrait .arch::before {
+      content: ''; position: absolute; inset: 18px 18px 0;
+      border-radius: inherit; border: 1.5px dashed rgba(241, 235, 221, .3); border-bottom: 0;
+    }
+    .portrait .arch-shadow { border: 2px solid var(--wine); border-bottom: 0; transform: translate(24px, -24px); }
+    .float-card {
+      position: absolute; z-index: 3;
+      display: flex; align-items: center; gap: 12px;
+      background: var(--paper); border-radius: 22px; padding: 12px 18px 12px 12px;
+      box-shadow: var(--shadow); font-size: 14px; line-height: 1.3;
+      animation: bob 6s ease-in-out infinite;
+    }
+    .float-card img { width: 52px; }
+    .float-card b { display: block; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 20px; }
+    .fc-1 { left: 4%; top: 34%; }
+    .fc-2 { right: -2%; bottom: 14%; animation-delay: -3s; }
+    .float-icon { position: absolute; z-index: 2; animation: bob 7s ease-in-out infinite; filter: drop-shadow(0 14px 18px rgba(70, 21, 27, .25)); }
+    .fi-cap { width: 100px; left: 0; top: 30%; animation-delay: -2s; }
+    @keyframes bob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-14px) rotate(2deg); } }
+    .hello { position: absolute; left: 6%; top: 12%; font-size: 30px; transform: rotate(-6deg); z-index: 3; }
+    .hello svg { display: block; width: 90px; height: 60px; margin: 2px 0 0 80px; stroke: var(--wine); fill: none; stroke-width: 2.5; stroke-linecap: round; }
+
+    .badge {
+      position: absolute; z-index: 4; left: -6%; bottom: 26%;
+      width: 150px; height: 150px; border-radius: 50%;
+      background: var(--gold); color: var(--wine);
+      display: grid; place-items: center;
+      box-shadow: var(--shadow);
+      transition: transform .3s;
+    }
+    .badge:hover { transform: scale(1.06); }
+    .badge svg.ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 18s linear infinite; }
+    .badge svg.ring text { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; letter-spacing: .18em; text-transform: uppercase; fill: var(--wine); }
+    .badge .plane { width: 54px; height: 54px; border-radius: 50%; background: var(--wine); display: grid; place-items: center; }
+    .badge .plane svg { width: 26px; height: 26px; fill: var(--cream); margin-left: -2px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Бегущая строка */
+    .marquee { background: var(--wine); color: var(--cream); padding: 22px 0; transform: rotate(-1.6deg); margin: -10px -20px 0; overflow: hidden; position: relative; z-index: 5; box-shadow: 0 10px 30px rgba(70, 21, 27, .2); }
+    .marquee-track { display: flex; width: max-content; animation: scroll 38s linear infinite; }
+    .marquee span { font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 24px; white-space: nowrap; padding-right: 28px; }
+    .marquee span i { font-style: normal; color: var(--gold); padding-left: 28px; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+
+    /* Обо мне — бенто */
+    .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+    .tile { border-radius: var(--radius); padding: 40px; position: relative; overflow: hidden; transition: transform .3s, box-shadow .3s; }
+    .tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .t-intro { grid-column: span 7; background: var(--paper); font-size: 20px; }
+    .t-intro h3 { font-size: clamp(28px, 3vw, 40px); margin-bottom: 20px; }
+    .t-intro p + p { margin-top: 14px; }
+    .t-intro .hand { font-size: 30px; margin-top: 24px; display: block; transform: rotate(-2deg); }
+    .t-uni { grid-column: span 5; background: var(--wine); color: var(--cream); display: flex; flex-direction: column; justify-content: space-between; min-height: 360px; }
+    .t-uni img { width: 62%; align-self: flex-end; margin: -10px -10px -20px 0; }
+    .t-uni .label { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; font-weight: 800; }
+    .t-uni p { font-size: 21px; font-weight: 600; margin-top: 10px; }
+    .t-num { grid-column: span 4; background: var(--gold); }
+    .t-num b { font-family: 'Unbounded', sans-serif; font-size: 110px; line-height: .9; display: block; font-weight: 700; }
+    .t-num p { font-size: 19px; font-weight: 700; margin-top: 14px; }
+    .t-tools { grid-column: span 4; background: var(--cream-2); }
+    .t-tools .code { font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: 15px; background: var(--wine); color: var(--cream); padding: 14px 18px; border-radius: 16px; margin-bottom: 20px; display: inline-block; }
+    .t-tools .code em { color: var(--gold); font-style: normal; }
+    .t-way { grid-column: span 4; background: var(--paper); }
+    .t-way ul { margin-top: 16px; display: grid; gap: 10px; }
+    .t-way li, .checks li { display: flex; gap: 12px; align-items: flex-start; }
+    .t-way li::before, .checks li::before {
+      content: ''; flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px; border-radius: 50%;
+      background: var(--wine) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23f1ebdd' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+    .tile h4 { font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; }
+
+    /* Предметы */
+    .subjects { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .subject { border-radius: 40px; padding: 48px; position: relative; overflow: hidden; min-height: 520px; display: flex; flex-direction: column; }
+    .subject h3 { font-size: 40px; margin-bottom: 8px; }
+    .subject .sub { opacity: .75; margin-bottom: 32px; }
+    .s-math { background: var(--paper); }
+    .s-math .formula { font-family: 'Caveat', cursive; font-weight: 700; font-size: 40px; opacity: .35; transform: rotate(-3deg); margin: -12px 0 24px; }
+    .topic-list { display: grid; gap: 12px; position: relative; z-index: 1; margin-top: auto; }
+    .topic-list li {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--cream); border-radius: 18px; padding: 16px 20px; font-weight: 700;
+      transition: transform .2s;
+    }
+    .topic-list li:hover { transform: translateX(6px); }
+    .topic-list li span { font-family: 'Unbounded', sans-serif; font-size: 14px; opacity: .5; }
+    .s-math .icon { position: absolute; right: 36px; top: 36px; width: 120px; transform: rotate(-8deg); filter: drop-shadow(0 12px 16px rgba(70, 21, 27, .2)); }
+
+    .s-info { background: #1f0b0e; color: #f1ebdd; }
+    .window { background: #2a1015; border-radius: 22px; overflow: hidden; margin-top: auto; box-shadow: 0 20px 40px rgba(0, 0, 0, .35); }
+    .window-bar { display: flex; gap: 8px; align-items: center; padding: 14px 18px; background: #351419; font-size: 13px; opacity: .9; }
+    .window-bar i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+    .window-bar i:nth-child(2) { background: #febc2e; }
+    .window-bar i:nth-child(3) { background: #28c840; }
+    .window-bar span { margin-left: 10px; font-family: ui-monospace, Consolas, monospace; opacity: .6; }
+    .window pre {
+      padding: 22px 24px 26px; font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: 15.5px; line-height: 1.75;
+      white-space: pre-wrap; color: #e9dfd0;
+    }
+    .k { color: #ff8fa3; } .s { color: #f3c46b; } .c { color: #9b7f84; font-style: italic; } .f { color: #8fd3ff; }
+    .cursor { display: inline-block; width: 9px; height: 18px; background: var(--gold); vertical-align: -3px; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .s-info .icon { position: absolute; right: 36px; top: 30px; width: 116px; transform: rotate(8deg); filter: drop-shadow(0 12px 16px rgba(0, 0, 0, .4)); }
+
+    /* Подход */
+    .approach .layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: start; }
+    .approach .sticky { position: sticky; top: 120px; }
+    .quote {
+      margin-top: 40px; background: var(--cream); color: var(--wine); border-radius: var(--radius); padding: 36px 36px 36px; position: relative;
+    }
+    .quote p { font-size: 19px; }
+    .quote img { position: absolute; right: -20px; top: -56px; width: 120px; transform: rotate(10deg); filter: drop-shadow(0 14px 20px rgba(0, 0, 0, .35)); }
+    .quote .hand { font-size: 26px; display: block; margin-top: 14px; }
+    .principles { display: grid; gap: 16px; counter-reset: p; }
+    .principle {
+      counter-increment: p;
+      display: grid; grid-template-columns: 84px 1fr; gap: 20px; align-items: center;
+      border: 1.5px solid rgba(241, 235, 221, .18); border-radius: 26px; padding: 26px 30px;
+      font-size: 20px; font-weight: 600;
+      transition: background .25s, border-color .25s, transform .25s;
+    }
+    .principle::before { content: '0' counter(p); font-family: 'Unbounded', sans-serif; font-size: 40px; font-weight: 600; color: var(--gold); }
+    .principle:hover { background: rgba(241, 235, 221, .07); border-color: rgba(241, 235, 221, .4); transform: translateX(8px); }
+
+    /* Как проходят занятия */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; top: 36px; left: 6%; right: 6%; height: 2px;
+      background: repeating-linear-gradient(90deg, var(--wine) 0 10px, transparent 10px 20px); opacity: .35;
+    }
+    .step { position: relative; }
+    .step .n {
+      width: 72px; height: 72px; border-radius: 50%; background: var(--wine); color: var(--cream);
+      display: grid; place-items: center; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 22px;
+      margin-bottom: 28px; box-shadow: 0 0 0 10px var(--cream);
+      transition: transform .3s, background .3s;
+    }
+    .step:hover .n { transform: scale(1.1) rotate(-8deg); background: var(--gold); color: var(--wine); }
+    .step h3 { font-size: 22px; margin-bottom: 12px; }
+    .step p { opacity: .8; }
+    .online {
+      margin-top: 64px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+      background: var(--paper); border-radius: 26px; padding: 26px 32px; font-size: 19px; font-weight: 600;
+    }
+    .online .globe { font-size: 40px; line-height: 1; }
+
+    /* Конспекты */
+    .notes .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .checks { display: grid; gap: 18px; margin: 36px 0; font-size: 19px; }
+    .notes .footnote { font-weight: 700; font-size: 20px; border-left: 4px solid var(--gold); padding-left: 20px; }
+    .notebook-wrap { position: relative; padding: 20px 30px 40px 0; }
+    .notebook {
+      position: relative; background: var(--paper); border-radius: 18px; padding: 44px 40px 44px 80px;
+      box-shadow: var(--shadow); transform: rotate(-2.5deg);
+      background-image: linear-gradient(transparent 39px, rgba(70, 21, 27, .14) 40px);
+      background-size: 100% 40px; background-position: 0 30px;
+      font-family: 'Caveat', cursive; font-size: 29px; line-height: 40px; color: #2d2a5a;
+    }
+    .notebook::before { content: ''; position: absolute; left: 56px; top: 0; bottom: 0; width: 2px; background: rgba(214, 70, 70, .45); }
+    .notebook::after {
+      content: ''; position: absolute; left: 18px; top: 30px; bottom: 30px; width: 16px;
+      background: radial-gradient(circle, var(--cream-2) 6px, transparent 7px) 0 0/16px 40px repeat-y;
+    }
+    .notebook .t { font-weight: 700; color: var(--wine); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 6px; }
+    .notebook .hl { background: linear-gradient(transparent 55%, rgba(233, 162, 59, .45) 55%); padding: 0 4px; }
+    .notebook .ok { color: #2f8a4f; }
+    .notebook-wrap .doc { position: absolute; right: -10px; bottom: -10px; width: 170px; transform: rotate(8deg); filter: drop-shadow(0 18px 24px rgba(70, 21, 27, .3)); }
+    .notebook-wrap .sent {
+      position: absolute; left: -24px; top: -6px; z-index: 2;
+      background: var(--wine); color: var(--cream); border-radius: 18px 18px 18px 4px;
+      padding: 12px 18px; font-size: 15px; font-weight: 700; box-shadow: var(--shadow); transform: rotate(-4deg);
+    }
+
+    /* Пробное занятие */
+    .trial-card {
+      background: var(--wine); color: var(--cream); border-radius: 48px; padding: 72px;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; position: relative; overflow: hidden;
+    }
+    .trial-card::before {
+      content: ''; position: absolute; width: 520px; height: 520px; border-radius: 50%;
+      right: -160px; top: -200px; background: radial-gradient(circle, rgba(233, 162, 59, .25), transparent 70%);
+    }
+    .trial-card h2 { margin: 6px 0 24px; }
+    .price { display: flex; align-items: flex-end; gap: 22px; margin: 32px 0 40px; flex-wrap: wrap; }
+    .price b { font-family: 'Unbounded', sans-serif; font-size: 96px; line-height: .85; font-weight: 700; color: var(--gold); }
+    .price span { font-size: 19px; line-height: 1.35; padding-bottom: 6px; }
+    .price s { opacity: .5; }
+    .trial-list { background: rgba(241, 235, 221, .07); border: 1.5px solid rgba(241, 235, 221, .16); border-radius: 32px; padding: 36px; position: relative; z-index: 1; align-self: start; }
+    .trial-list h3 { font-size: 22px; margin-bottom: 24px; }
+    .trial-list ol { list-style: none; counter-reset: t; display: grid; gap: 18px; }
+    .trial-list li { counter-increment: t; display: flex; gap: 16px; align-items: center; font-size: 18px; }
+    .trial-list li::before {
+      content: counter(t); flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+      background: var(--cream); color: var(--wine); display: grid; place-items: center;
+      font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 15px;
+    }
+    .trial-list .note { margin-top: 26px; padding-top: 22px; border-top: 1px dashed rgba(241, 235, 221, .25); opacity: .8; font-size: 16px; }
+    .trial-card .fi-compass { position: absolute; width: 150px; right: 34%; bottom: -30px; transform: rotate(-14deg); opacity: .95; filter: drop-shadow(0 20px 20px rgba(0, 0, 0, .35)); }
+
+    /* Отзывы */
+    .results { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 48px; }
+    .result {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--paper); border-radius: 24px; padding: 18px 26px 18px 20px; box-shadow: 0 6px 20px rgba(70, 21, 27, .07);
+    }
+    .result b { font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 34px; line-height: 1; }
+    .result span { font-size: 15px; line-height: 1.3; opacity: .8; }
+    .review-grid { columns: 3; column-gap: 22px; }
+    .review {
+      display: block; break-inside: avoid; margin-bottom: 22px;
+      background: var(--wine); padding: 7px; border-radius: 26px;
+      box-shadow: 0 12px 30px rgba(70, 21, 27, .16);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .review:nth-child(3n+1) { transform: rotate(-.8deg); }
+    .review:nth-child(3n+2) { transform: rotate(.6deg); }
+    .review:hover { transform: translateY(-6px) rotate(0); box-shadow: 0 22px 44px rgba(70, 21, 27, .28); }
+    .review img { width: 100%; border-radius: 20px; }
+
+    /* FAQ */
+    .faq .layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
+    .faq details { border-bottom: 1.5px solid rgba(70, 21, 27, .15); }
+    .faq summary {
+      list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      padding: 28px 0; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 20px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: '+'; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+      background: var(--wine); color: var(--cream); display: grid; place-items: center; font-size: 24px; font-family: 'Manrope', sans-serif;
+      transition: transform .3s, background .3s;
+    }
+    .faq details[open] summary::after { transform: rotate(45deg); background: var(--gold); color: var(--wine); }
+    .faq details p { padding: 0 60px 28px 0; opacity: .85; }
+
+    /* Финал */
+    .final { padding: 0 0 40px; }
+    .final-card {
+      position: relative; overflow: hidden; border-radius: 48px; background: var(--wine); color: var(--cream);
+      padding: 80px 72px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center;
+    }
+    .final-card h2 { font-size: clamp(36px, 5vw, 68px); }
+    .final-card p { font-size: 20px; margin: 24px 0 40px; max-width: 560px; opacity: .9; }
+    .final-card .handle { display: block; margin-top: 18px; font-size: 32px; color: var(--gold); }
+    .final-photo { position: relative; align-self: end; margin: 60px 0 -80px; }
+    .final-photo .portrait { position: relative; right: auto; width: 100%; }
+    .final-photo .portrait .arch { background: var(--wine-2); }
+    .final-photo .portrait .arch::before { display: none; }
+    .final-photo .portrait .arch-shadow { border-color: rgba(241, 235, 221, .35); }
+
+    footer { padding: 36px 0 48px; }
+    footer .container { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 15px; opacity: .75; }
+
+    /* Появление при прокрутке */
+    .js .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
+    .js .reveal.in { opacity: 1; transform: none; }
+    .js .reveal.d1 { transition-delay: .1s; } .js .reveal.d2 { transition-delay: .2s; } .js .reveal.d3 { transition-delay: .3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+      .hero h1 .mark path { stroke-dashoffset: 0; }
+    }
+
+    @media (max-width: 1080px) {
+      .nav-links { display: none; }
+      .hero .container { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+      .hero-text { padding-bottom: 20px; }
+      .hero-visual { min-height: 560px; max-width: 620px; width: 100%; margin: 0 auto; }
+      .t-intro, .t-uni { grid-column: span 12; }
+      .t-num, .t-tools, .t-way { grid-column: span 4; }
+      .approach .layout, .notes .layout, .faq .layout { grid-template-columns: 1fr; gap: 48px; }
+      .approach .sticky { position: static; }
+      .trial-card, .final-card { grid-template-columns: 1fr; padding: 56px 44px; }
+      .final-photo { max-width: 420px; margin: 0 auto -56px; }
+      .review-grid { columns: 2; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 48px 24px; }
+      .steps::before { display: none; }
+    }
+    @media (max-width: 720px) {
+      body { font-size: 16px; }
+      .container { padding: 0 16px; }
+      section { padding: 80px 0; }
+      .nav .container { height: 66px; }
+      .logo small { display: none; }
+      .nav .btn span { display: none; }
+      .nav .btn { padding: 12px; }
+      .hero { padding-top: 24px; }
+      .hero h1 { font-size: clamp(32px, 9.6vw, 44px); }
+      .hero-lead { font-size: 18px; }
+      .btn { white-space: normal; text-align: center; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-stats { gap: 24px; }
+      .hero-stats b { font-size: 28px; }
+      .hero-visual { min-height: 440px; }
+      .badge { width: 112px; height: 112px; left: 0; bottom: 30%; }
+      .badge svg.ring text { font-size: 10px; }
+      .badge .plane { width: 42px; height: 42px; }
+      .fc-1 { left: 0; top: 30%; }
+      .fc-2 { right: 0; bottom: 6%; }
+      .float-card { padding: 8px 12px 8px 8px; font-size: 12px; }
+      .float-card img { width: 38px; }
+      .float-card b { font-size: 16px; }
+      .fi-cap { display: none; }
+      .hero-visual .portrait { width: 92%; right: -2%; }
+      .portrait .arch-shadow { transform: translate(12px, -12px); }
+      .hello { font-size: 24px; left: 2%; top: 4%; }
+      .hello svg { width: 60px; height: 44px; margin-left: 60px; }
+      .marquee span { font-size: 18px; }
+      .bento { gap: 14px; }
+      .t-num, .t-tools, .t-way { grid-column: span 12; }
+      .tile { padding: 28px; border-radius: 26px; }
+      .t-num b { font-size: 84px; }
+      .subjects { grid-template-columns: 1fr; }
+      .subject { padding: 32px 24px; min-height: 0; border-radius: 30px; }
+      .subject h3 { font-size: 24px; padding-right: 72px; }
+      .subject .sub { padding-right: 60px; }
+      .s-math .icon, .s-info .icon { width: 64px; right: 18px; top: 22px; }
+      .s-math .formula { font-size: 28px; }
+      .quote { padding: 28px; }
+      .quote p { padding-right: 36px; }
+      .quote img { width: 80px; right: -8px; top: -44px; }
+      .window pre { font-size: 13px; padding: 18px; }
+      .principle { grid-template-columns: 56px 1fr; padding: 20px; font-size: 17px; }
+      .principle::before { font-size: 28px; }
+      .steps { grid-template-columns: 1fr; gap: 28px; }
+      .step { display: grid; grid-template-columns: 56px 1fr; column-gap: 18px; }
+      .step .n { width: 56px; height: 56px; font-size: 17px; margin: 0; grid-row: span 2; box-shadow: none; }
+      .step h3 { font-size: 19px; margin: 4px 0 6px; }
+      .result { flex: 1 1 100%; }
+      .notebook { padding: 32px 22px 32px 64px; font-size: 24px; }
+      .notebook::before { left: 46px; }
+      .notebook::after { left: 14px; }
+      .notebook-wrap { padding-right: 0; }
+      .notebook-wrap .doc { width: 110px; right: -6px; }
+      .notebook-wrap .sent { left: 0; }
+      .trial-card, .final-card { padding: 40px 24px; border-radius: 32px; }
+      .trial-list { padding: 24px; }
+      .price b { font-size: 72px; }
+      .trial-card .fi-compass { display: none; }
+      .trial-card .btn, .final-card .btn { width: 100%; justify-content: center; }
+      .review-grid { columns: 1; }
+      .faq summary { font-size: 17px; padding: 22px 0; }
+      .faq details p { padding-right: 0; }
+      .final-photo { margin-bottom: -40px; }
+    }
+  </style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="tg" viewBox="0 0 24 24"><path d="M21.6 3.3c-.3-.3-.8-.3-1.2-.2L2.7 10c-.5.2-.8.6-.8 1.1 0 .5.4.9.9 1l4.6 1.5 1.7 5.5c.1.4.5.7.9.8h.2c.4 0 .7-.2.9-.4l2.6-2.6 4.6 3.4c.2.1.5.2.7.2.1 0 .3 0 .4-.1.4-.1.7-.5.8-.9l2.9-14.9c.1-.5 0-1-.4-1.3ZM9.8 14.4l-.6 3.2-1.2-3.9 9.4-6.3-7.6 7Z"/></symbol>
+</svg>
+
+  <!-- Навигация -->
+  <header class="nav" id="nav">
+    <div class="container">
+      <a href="#top" class="logo">
+        <span class="logo-mark">Е</span>
+        <span>Елизавета<small>подготовка к ОГЭ</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">Обо мне</a>
+        <a href="#subjects">Предметы</a>
+        <a href="#process">Как занимаемся</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+      <a class="btn" href="https://t.me/deerwee" target="_blank" rel="noopener" aria-label="Записаться в Telegram">
+        <svg><use href="#tg"/></svg><span>Записаться</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Первый экран -->
+  <section class="hero grid-paper" id="top">
+    <div class="container">
+      <div class="hero-text">
+        <span class="chip reveal"><span class="dot"></span>Математика и информатика · онлайн · 2026</span>
+        <h1 class="reveal d1">Уверенно сдать ОГЭ и&nbsp;получить <span class="mark">свой балл<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 14 C 60 4, 120 4, 170 10 S 260 20, 296 8"/></svg></span></h1>
+        <p class="hero-lead reveal d2">Готовлю девятиклассников к ОГЭ 4 года. Объясняю сложные темы простым языком, чтобы ученик понимал материал, а не заучивал решения.</p>
+        <div class="hero-actions reveal d3">
+          <a class="btn" href="https://t.me/deerwee" target="_blank" rel="noopener"><svg><use href="#tg"/></svg>Записаться на бесплатный урок</a>
+          <a class="btn ghost" href="#reviews">Отзывы</a>
+        </div>
+        <div class="hero-stats reveal d3">
+          <div><b>4 года</b>опыта подготовки к экзаменам</div>
+          <div><b>30 мин</b>пробное занятие бесплатно</div>
+          <div><b>21/21</b>максимальный балл у ученицы</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="portrait">
+          <span class="arch-shadow"></span><span class="arch"></span>
+          <img src="img/liza.webp" alt="Репетитор Елизавета с ноутбуком">
+        </div>
+        <div class="hello hand">Привет, я Лиза!
+          <svg viewBox="0 0 90 60"><path d="M4 6 C 30 4, 60 14, 76 46"/><path d="M64 40 L 77 48 L 82 33"/></svg>
+        </div>
+        <img class="float-icon fi-cap" src="img/cap.webp" alt="">
+        <div class="float-card fc-2"><img src="img/medal.webp" alt=""><div><b>«5»</b>по математике<br>у моих учеников</div></div>
+        <a class="badge" href="https://t.me/deerwee" target="_blank" rel="noopener" aria-label="Записаться на бесплатное занятие">
+          <svg class="ring" viewBox="0 0 150 150"><defs><path id="circle" d="M75,75 m-56,0 a56,56 0 1,1 112,0 a56,56 0 1,1 -112,0"/></defs><text><textPath href="#circle">первый урок бесплатно • 30 минут •</textPath></text></svg>
+          <span class="plane"><svg><use href="#tg"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Бегущая строка -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Алгебра<i>✦</i></span><span>Геометрия<i>✦</i></span><span>Вторая часть ОГЭ<i>✦</i></span><span>Алгоритмы<i>✦</i></span><span>Электронные таблицы<i>✦</i></span><span>Программирование<i>✦</i></span><span>Оформление решений<i>✦</i></span><span>Стратегия экзамена<i>✦</i></span>
+      <span>Алгебра<i>✦</i></span><span>Геометрия<i>✦</i></span><span>Вторая часть ОГЭ<i>✦</i></span><span>Алгоритмы<i>✦</i></span><span>Электронные таблицы<i>✦</i></span><span>Программирование<i>✦</i></span><span>Оформление решений<i>✦</i></span><span>Стратегия экзамена<i>✦</i></span>
+    </div>
+  </div>
+
+  <!-- Обо мне -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Обо мне</div>
+        <h2>Объясняю так, чтобы стало понятно</h2>
+      </div>
+      <div class="bento">
+        <div class="tile t-intro reveal">
+          <h3>Меня зовут Елизавета</h3>
+          <p>Я готовлю девятиклассников к ОГЭ уже 4 года и умею объяснять сложные темы простым языком.</p>
+          <p>Моя задача — чтобы ученик понимал материал, а не просто заучивал решения. Тогда на экзамене не страшно даже незнакомое задание.</p>
+          <span class="hand">понимать &gt; зубрить ✓</span>
+        </div>
+        <div class="tile t-uni reveal d1">
+          <div>
+            <div class="label">Учёба</div>
+            <p>Студентка Аэрокосмического университета имени Королёва (СГАУ)</p>
+          </div>
+          <img src="img/city.webp" alt="">
+        </div>
+        <div class="tile t-num reveal">
+          <b>4</b>
+          <p>года готовлю к ОГЭ по математике и информатике</p>
+        </div>
+        <div class="tile t-tools reveal d1">
+          <div class="code"><em>while</em> True: learn()</div>
+          <h4>Математика и программирование — не просто предметы, а инструменты, с которыми я работаю каждый день</h4>
+        </div>
+        <div class="tile t-way reveal d2">
+          <h4>Как я работаю</h4>
+          <ul>
+            <li>Понятные объяснения</li>
+            <li>Индивидуальный подход</li>
+            <li>План под цель ученика</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Предметы -->
+  <section id="subjects" class="grid-paper">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">С чем помогаю</div>
+        <h2>Два предмета — все темы ОГЭ</h2>
+        <p>Разбираем все необходимые темы и учимся применять знания на практике.</p>
+      </div>
+      <div class="subjects">
+        <div class="subject s-math reveal">
+          <img class="icon" src="img/pencil.webp" alt="">
+          <h3>Математика</h3>
+          <p class="sub">Алгебра, геометрия и вторая часть</p>
+          <div class="formula">a² + b² = c² &nbsp; D = b² − 4ac</div>
+          <ul class="topic-list">
+            <li><span>01</span>Алгебра и основные формулы</li>
+            <li><span>02</span>Геометрия и решение задач</li>
+            <li><span>03</span>Задания второй части ОГЭ</li>
+            <li><span>04</span>Грамотное оформление решений</li>
+          </ul>
+        </div>
+        <div class="subject s-info reveal d1">
+          <img class="icon" src="img/clipboard.webp" alt="">
+          <h3>Информатика</h3>
+          <p class="sub">От теории до программирования</p>
+          <div class="window">
+            <div class="window-bar"><i></i><i></i><i></i><span>oge_informatika.py</span></div>
+<pre><span class="c"># что разбираем на занятиях</span>
+<span class="k">topics</span> = [
+    <span class="s">"Информация и её измерение"</span>,
+    <span class="s">"Алгоритмы и исполнители"</span>,
+    <span class="s">"Электронные таблицы"</span>,
+    <span class="s">"Основы программирования"</span>,
+]
+<span class="f">print</span>(<span class="s">"ОГЭ сдан!"</span>) <span class="cursor"></span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подход -->
+  <section class="approach dark">
+    <div class="container">
+      <div class="layout">
+        <div class="sticky reveal">
+          <div class="eyebrow">Мой подход</div>
+          <h2>Главное — понимание логики решения</h2>
+          <div class="quote">
+            <img src="img/medal.webp" alt="">
+            <p><b>Моя цель</b> — не просто научить решать типовые задания, а помочь ученику справляться с ними самостоятельно и уверенно.</p>
+            <span class="hand">— Елизавета</span>
+          </div>
+        </div>
+        <div class="principles">
+          <div class="principle reveal">Разбираем разные типы заданий ОГЭ</div>
+          <div class="principle reveal">Учимся понимать, почему задача решается именно так</div>
+          <div class="principle reveal">Тренируем грамотное оформление решений</div>
+          <div class="principle reveal">Учимся не терять баллы из-за невнимательности</div>
+          <div class="principle reveal">Продумываем стратегию экзамена и распределение времени</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Как проходят занятия -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Как проходят занятия</div>
+        <h2>Четыре шага до уверенного результата</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="n">01</div><h3>Диагностика</h3><p>Определяем текущий уровень знаний и находим темы, которые нужно подтянуть.</p></div>
+        <div class="step reveal d1"><div class="n">02</div><h3>Индивидуальный план</h3><p>Составляю план подготовки с учётом цели ученика и времени до экзамена.</p></div>
+        <div class="step reveal d2"><div class="n">03</div><h3>Практика</h3><p>Сначала решаем задачи вместе, затем ученик пробует решать самостоятельно.</p></div>
+        <div class="step reveal d3"><div class="n">04</div><h3>Закрепление</h3><p>Повторяем сложные темы, разбираем ошибки и учимся применять знания в новых заданиях.</p></div>
+      </div>
+      <div class="online reveal"><span class="globe">🌍</span>Занятия проходят онлайн — заниматься можно из любого города</div>
+    </div>
+  </section>
+
+  <!-- Конспекты -->
+  <section class="notes grid-paper">
+    <div class="container">
+      <div class="layout">
+        <div class="reveal">
+          <div class="eyebrow">Конспекты и поддержка</div>
+          <h2>Конспект после каждого урока</h2>
+          <ul class="checks">
+            <li>Все разобранные темы собраны в одном месте</li>
+            <li>Можно повторить материал перед следующим занятием</li>
+            <li>Легче освежить знания перед экзаменом</li>
+            <li>Родители видят, что изучали на уроке</li>
+          </ul>
+          <p class="footnote">Мы не просто решаем задачи на занятии, а создаём удобную базу знаний для повторения.</p>
+        </div>
+        <div class="notebook-wrap reveal d1">
+          <div class="sent">Конспект отправлен ✓✓</div>
+          <div class="notebook">
+            <div class="t">Квадратные уравнения</div>
+            <div>ax² + bx + c = 0</div>
+            <div><span class="hl">D = b² − 4ac</span></div>
+            <div>D &gt; 0 → два корня</div>
+            <div>x = (−b ± √D) / 2a</div>
+            <div class="ok">✓ разобрали задачу из 2 части</div>
+            <div>д/з: № 5, 7, 12</div>
+          </div>
+          <img class="doc" src="img/document.webp" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Пробное занятие -->
+  <section id="trial">
+    <div class="container">
+      <div class="trial-card reveal">
+        <div>
+          <div class="eyebrow">Первое занятие</div>
+          <h2>Бесплатное пробное занятие</h2>
+          <div class="price"><b>0 ₽</b><span>30 минут<br>ни к чему не обязывает</span></div>
+          <p style="opacity:.85;margin-bottom:36px;max-width:460px">Возможность познакомиться, попробовать формат занятий и понять, подходит ли он ученику.</p>
+          <a class="btn light" href="https://t.me/deerwee" target="_blank" rel="noopener"><svg><use href="#tg"/></svg>Записаться на пробное</a>
+        </div>
+        <div class="trial-list">
+          <h3>На пробном занятии мы:</h3>
+          <ol>
+            <li>Посмотрим, как ученик решает задачи</li>
+            <li>Найдём темы, которые вызывают трудности</li>
+            <li>Определим желаемый результат на ОГЭ</li>
+            <li>Составим предварительный план подготовки</li>
+          </ol>
+          <p class="note">После занятия вы получите понятную картину: где ученик сейчас и что нужно, чтобы получить желаемый балл.</p>
+        </div>
+        <img class="fi-compass" src="img/compass.webp" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section id="reviews" class="grid-paper">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Отзывы</div>
+        <h2>Пишут ученики и родители</h2>
+        <p>Настоящие сообщения после экзаменов — без редактуры.</p>
+      </div>
+      <div class="results reveal">
+        <div class="result"><b>21/21</b><span>максимальный<br>балл</span></div>
+        <div class="result"><b>«5»</b><span>по математике<br>и геометрии</span></div>
+      </div>
+      <div class="review-grid">
+        <a class="review reveal" href="img/reviews/r1.jpg" target="_blank"><img src="img/reviews/r1.jpg" alt="Отзыв: пришли результаты, 21 из 21, оценка 5" loading="lazy"></a>
+        <a class="review reveal" href="img/reviews/r2.jpg" target="_blank"><img src="img/reviews/r2.jpg" alt="Отзыв: 5 по математике, спасибо за подготовку ко второй части" loading="lazy"></a>
+        <a class="review reveal" href="img/reviews/r3.jpg" target="_blank"><img src="img/reviews/r3.jpg" alt="Отзыв: 19 из 21 балла" loading="lazy"></a>
+        <a class="review reveal" href="img/reviews/r4.jpg" target="_blank"><img src="img/reviews/r4.jpg" alt="Отзыв: у меня 5, спасибо за подготовку" loading="lazy"></a>
+        <a class="review reveal" href="img/reviews/r5.jpg" target="_blank"><img src="img/reviews/r5.jpg" alt="Отзыв родителя: дочь справляется с заданиями, спасибо" loading="lazy"></a>
+        <a class="review reveal" href="img/reviews/r6.jpg" target="_blank"><img src="img/reviews/r6.jpg" alt="Отзыв: 19 баллов, спасибо" loading="lazy"></a>
+        <a class="review reveal" href="img/reviews/r7.jpg" target="_blank"><img src="img/reviews/r7.jpg" alt="Отзыв родителя: дочка в восторге, всё поняла" loading="lazy"></a>
+        <a class="review reveal" href="img/reviews/r8.jpg" target="_blank"><img src="img/reviews/r8.jpg" alt="Отзыв ученицы о подготовке" loading="lazy"></a>
+        <a class="review reveal" href="img/reviews/r9.jpg" target="_blank"><img src="img/reviews/r9.jpg" alt="Отзыв: у меня 19 баллов" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="layout">
+        <div class="reveal">
+          <div class="eyebrow">Вопросы</div>
+          <h2>Частые вопросы</h2>
+        </div>
+        <div class="reveal d1">
+          <details open>
+            <summary>Как проходят занятия?</summary>
+            <p>Онлайн, поэтому заниматься можно из любого города. Сначала решаем задачи вместе, затем ученик пробует сам, а сложные темы закрепляем.</p>
+          </details>
+          <details>
+            <summary>Сколько стоит пробное занятие?</summary>
+            <p>Первое занятие бесплатное и длится 30 минут. Оно ни к чему не обязывает.</p>
+          </details>
+          <details>
+            <summary>Что будет на первом занятии?</summary>
+            <p>Посмотрим, как ученик решает задачи, найдём темы, которые вызывают трудности, определим желаемый результат на ОГЭ и составим предварительный план подготовки.</p>
+          </details>
+          <details>
+            <summary>По каким предметам вы готовите?</summary>
+            <p>ОГЭ по математике (алгебра, геометрия, вторая часть) и по информатике (теория, алгоритмы, электронные таблицы, программирование).</p>
+          </details>
+          <details>
+            <summary>Будут ли материалы после занятий?</summary>
+            <p>Да. После каждого занятия я сохраняю конспект и отправляю его ученику — так удобно повторять, а родители видят, что изучали на уроке.</p>
+          </details>
+          <details>
+            <summary>Как записаться?</summary>
+            <p>Напишите мне в Telegram <a href="https://t.me/deerwee" target="_blank" rel="noopener"><b>@deerwee</b></a> — подберём удобное время.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Финал -->
+  <section class="final">
+    <div class="container">
+      <div class="final-card reveal">
+        <div>
+          <h2>Готовы начать подготовку?</h2>
+          <p>ОГЭ может быть понятнее и спокойнее, если готовиться системно и знать, что делать на экзамене. Начнём с бесплатного пробного занятия — напишите мне, и мы подберём удобное время.</p>
+          <a class="btn light" href="https://t.me/deerwee" target="_blank" rel="noopener"><svg><use href="#tg"/></svg>Написать в Telegram</a>
+          <a class="handle hand" href="https://t.me/deerwee" target="_blank" rel="noopener">@deerwee</a>
+        </div>
+        <div class="final-photo">
+          <div class="portrait">
+            <span class="arch-shadow"></span><span class="arch"></span>
+            <img src="img/liza.webp" alt="" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span>© 2026 Репетитор Елизавета</span>
+      <span>Подготовка к ОГЭ по математике и информатике · онлайн</span>
+    </div>
+  </footer>
+
+<script>
+  // Плавное появление блоков и тень у шапки при прокрутке
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10), { passive: true });
+</script>
+</body>
+</html>
